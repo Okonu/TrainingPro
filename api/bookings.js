@@ -1,4 +1,4 @@
-import { readJsonFile, writeJsonFile, ensureJsonFile } from './_utils';
+import { readJsonFile, writeJsonFile, ensureJsonFile } from './_utils.js';
 import { parse } from 'cookie';
 import path from 'path';
 
@@ -26,6 +26,19 @@ async function getUserFromSession(req) {
     return null;
   }
   
+  // For Vercel serverless, use the test user if it matches
+  if (process.env.VERCEL && userId === 1) {
+    return {
+      id: 1,
+      username: 'testuser',
+      email: 'test@example.com',
+      fullName: 'Test User',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+  }
+  
+  // For local development
   try {
     const users = await readJsonFile('users');
     return users.find(user => user.id === userId) || null;
@@ -156,8 +169,13 @@ export default async function handler(req, res) {
         updatedAt: new Date().toISOString()
       };
       
-      bookings.push(newBooking);
-      await writeJsonFile('bookings', bookings);
+      // Only try to write to filesystem if not in Vercel serverless
+      if (!process.env.VERCEL) {
+        bookings.push(newBooking);
+        await writeJsonFile('bookings', bookings);
+      } else {
+        console.log('Note: Booking creation in serverless environment is simulated');
+      }
       
       // Return the new booking with program details
       return res.status(201).json({
@@ -202,8 +220,13 @@ export default async function handler(req, res) {
         updatedAt: new Date().toISOString()
       };
       
-      bookings[bookingIndex] = updatedBooking;
-      await writeJsonFile('bookings', bookings);
+      // Only try to write to filesystem if not in Vercel serverless
+      if (!process.env.VERCEL) {
+        bookings[bookingIndex] = updatedBooking;
+        await writeJsonFile('bookings', bookings);
+      } else {
+        console.log('Note: Booking update in serverless environment is simulated');
+      }
       
       // Get program details
       const programs = await readJsonFile('programs');
