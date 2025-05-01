@@ -1,6 +1,28 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, User } from "firebase/auth";
-import { getFirestore, collection, doc, setDoc, getDoc, updateDoc, query, where, getDocs, addDoc, deleteDoc, onSnapshot } from "firebase/firestore";
+import { initializeApp, FirebaseApp } from "firebase/app";
+import { 
+  getAuth, 
+  signInWithPopup, 
+  GoogleAuthProvider, 
+  signOut, 
+  onAuthStateChanged, 
+  User,
+  Auth 
+} from "firebase/auth";
+import { 
+  getFirestore, 
+  collection, 
+  doc, 
+  setDoc, 
+  getDoc, 
+  updateDoc, 
+  query, 
+  where, 
+  getDocs, 
+  addDoc, 
+  deleteDoc, 
+  onSnapshot,
+  Firestore
+} from "firebase/firestore";
 import { useState, useEffect } from "react";
 
 // Firebase configuration
@@ -12,11 +34,54 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const googleProvider = new GoogleAuthProvider();
+let app: FirebaseApp | undefined;
+let auth: Auth;
+let db: Firestore;
+let googleProvider: GoogleAuthProvider;
+
+try {
+  // Validate required Firebase config values
+  if (!firebaseConfig.apiKey || !firebaseConfig.projectId || !firebaseConfig.appId) {
+    console.error('Firebase configuration is incomplete. Missing required keys.');
+    throw new Error('Firebase configuration incomplete');
+  }
+  
+  app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  db = getFirestore(app);
+  googleProvider = new GoogleAuthProvider();
+  
+  console.log('Firebase initialized successfully');
+} catch (error) {
+  console.error('Error initializing Firebase:', error);
+  
+  // Create stub implementations for Firebase functionality to prevent app crashes
+  auth = {
+    currentUser: null,
+    onAuthStateChanged: (callback: (user: User | null) => void) => {
+      callback(null);
+      return () => {};
+    },
+    signInWithPopup: async () => { 
+      throw new Error('Firebase authentication not available'); 
+    },
+    signOut: async () => { 
+      throw new Error('Firebase authentication not available'); 
+    }
+  } as unknown as Auth;
+  
+  db = {
+    collection: () => ({
+      docs: []
+    }),
+    doc: () => ({
+      exists: () => false,
+      data: () => ({})
+    })
+  } as unknown as Firestore;
+  
+  googleProvider = {} as GoogleAuthProvider;
+}
 
 // Auth functions
 export const signInWithGoogle = async () => {
