@@ -110,6 +110,11 @@ export default function Header() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem>
+                    <Link href="/dashboard" className="flex items-center">
+                      <span>Dashboard</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
                     <Link href="/profile" className="flex items-center">
                       <User className="mr-2 h-4 w-4" />
                       <span>My Profile</span>
@@ -207,6 +212,13 @@ export default function Header() {
             {!isLoading && (
               user ? (
                 <>
+                  <Link 
+                    href="/dashboard" 
+                    className="block px-3 py-3 text-neutral-600 hover:text-primary font-medium"
+                    onClick={handleNavClick}
+                  >
+                    Dashboard
+                  </Link>
                   <Link 
                     href="/profile" 
                     className="block px-3 py-3 text-neutral-600 hover:text-primary font-medium"
