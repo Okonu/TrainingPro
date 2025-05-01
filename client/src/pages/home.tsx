@@ -3,6 +3,7 @@ import Header from "@/components/header";
 import HeroSection from "@/components/hero-section";
 import StatsSection from "@/components/stats-section";
 import AboutSection from "@/components/about-section";
+import ServicesSection from "@/components/services-section";
 import ProgramsSection from "@/components/programs-section";
 import LeadershipSection from "@/components/leadership-section";
 import TestimonialsSection from "@/components/testimonials-section";
@@ -31,6 +32,7 @@ export default function Home() {
         <HeroSection />
         <StatsSection />
         <AboutSection />
+        <ServicesSection />
         <ProgramsSection />
         <LeadershipSection />
         <TestimonialsSection />
