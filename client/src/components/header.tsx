@@ -43,7 +43,7 @@ export default function Header() {
 
   const handleLogout = async () => {
     try {
-      await signOut();
+      await logoutMutation.mutateAsync();
       toast({
         title: "Logged Out",
         description: "You have been successfully logged out.",
@@ -96,14 +96,14 @@ export default function Header() {
               </a>
             ))}
 
-            {!loading && (
-              currentUser ? (
+            {!isLoading && (
+              user ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="relative h-10 w-10 rounded-full">
                       <Avatar className="h-10 w-10">
-                        <AvatarImage src={currentUser.photoURL || ''} alt={currentUser.displayName || 'User'} />
-                        <AvatarFallback>{currentUser.displayName?.charAt(0) || 'U'}</AvatarFallback>
+                        <AvatarImage src="" alt={user.fullName || 'User'} />
+                        <AvatarFallback>{user.fullName?.charAt(0) || 'U'}</AvatarFallback>
                       </Avatar>
                     </Button>
                   </DropdownMenuTrigger>
@@ -198,8 +198,8 @@ export default function Header() {
               </a>
             ))}
 
-            {!loading && (
-              currentUser ? (
+            {!isLoading && (
+              user ? (
                 <>
                   <Link 
                     href="/profile" 
