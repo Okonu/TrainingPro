@@ -19,7 +19,10 @@ const AuthContext = createContext<AuthContextType>({
 });
 
 // Export the hook for using the auth context
-export const useAuthContext = () => useContext(AuthContext);
+// This function declaration style is more compatible with HMR
+export function useAuthContext() {
+  return useContext(AuthContext);
+}
 
 // Auth Provider Component
 interface AuthProviderProps {

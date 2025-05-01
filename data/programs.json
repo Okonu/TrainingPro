@@ -1,41 +1,54 @@
 [
   {
     "id": 1,
-    "title": "Executive Leadership Program",
-    "description": "A comprehensive program designed for senior executives to enhance strategic thinking, decision-making, and organizational leadership skills.",
+    "title": "East African Executive Leadership Program",
+    "description": "A comprehensive program designed for Kenyan and East African senior executives to enhance strategic thinking, decision-making, and organizational leadership skills in the regional context.",
     "features": [
-      "Strategic vision development",
-      "Executive presence and communication",
-      "Change management",
-      "Crisis leadership",
-      "Building high-performance teams"
+      "Strategic vision for African markets",
+      "Executive presence and cross-cultural communication",
+      "Change management in developing economies",
+      "Crisis leadership for regional challenges",
+      "Building high-performance diverse teams"
     ],
-    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    "image": "https://images.unsplash.com/photo-1559653747-78d11524aa25?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
   },
   {
     "id": 2,
     "title": "Emerging Leaders Development",
-    "description": "Prepare your high-potential employees for leadership roles through skill development, mentorship, and practical leadership experiences.",
+    "description": "Prepare your high-potential Kenyan employees for leadership roles through skill development, mentorship, and practical leadership experiences tailored to regional business needs.",
     "features": [
-      "Leadership fundamentals",
-      "Emotional intelligence",
-      "Project management",
-      "Effective communication",
-      "Problem-solving and decision-making"
+      "Leadership fundamentals with local context",
+      "Emotional intelligence in diverse workplaces",
+      "Project management for African markets",
+      "Effective communication across cultures",
+      "Problem-solving for local challenges"
     ],
-    "image": "https://images.unsplash.com/photo-1507208773393-40d9fc670ffa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    "image": "https://images.unsplash.com/photo-1542744173-05336fcc7ad4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
   },
   {
     "id": 3,
     "title": "Team Leadership Essentials",
-    "description": "A focused program for team leaders and managers to develop the critical skills needed to lead effective, engaged, and productive teams.",
+    "description": "A focused program for Kenyan team leaders and managers to develop the critical skills needed to lead effective, engaged, and productive teams in local and regional contexts.",
     "features": [
-      "Team dynamics and motivation",
-      "Delegation and empowerment",
-      "Conflict resolution",
-      "Performance management",
-      "Coaching and feedback"
+      "Team dynamics and motivation in African workplaces",
+      "Delegation and empowerment for local talent",
+      "Cultural conflict resolution",
+      "Performance management in Kenyan context",
+      "Coaching and feedback across diverse teams"
     ],
-    "image": "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    "image": "https://images.unsplash.com/photo-1536982753652-759ac69b576e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+  },
+  {
+    "id": 4,
+    "title": "Women in Leadership: Kenyan Pathways",
+    "description": "Designed specifically to address the unique challenges and opportunities for women leaders in Kenya and East Africa, empowering the next generation of female executives.",
+    "features": [
+      "Strategic career advancement",
+      "Building confidence and executive presence",
+      "Negotiation and influence tactics",
+      "Work-life integration strategies",
+      "Creating support networks and mentorship"
+    ],
+    "image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
   }
 ]

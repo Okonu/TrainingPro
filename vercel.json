@@ -1,30 +1,28 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/*.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "client/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
+  "functions": {
+    "api/*.js": {
+      "runtime": "@vercel/node@2.0.0",
+      "memory": 1024,
+      "includeFiles": "data/**"
     }
+  },
+  "buildCommand": "cd client && npm run build",
+  "outputDirectory": "client/dist",
+  "rewrites": [
+    { "source": "/api/testimonials", "destination": "/api/testimonials.js" },
+    { "source": "/api/programs", "destination": "/api/programs.js" },
+    { "source": "/api/events", "destination": "/api/events.js" },
+    { "source": "/api/contact", "destination": "/api/contact.js" },
+    { "source": "/api/newsletter/subscribe", "destination": "/api/newsletter-subscribe.js" },
+    { "source": "/api/user", "destination": "/api/user.js" },
+    { "source": "/api/login", "destination": "/api/login.js" },
+    { "source": "/api/register", "destination": "/api/register.js" },
+    { "source": "/api/logout", "destination": "/api/logout.js" },
+    { "source": "/(login|profile|bookings|auth)(.*)", "destination": "/" },
+    { "source": "/(.*)", "destination": "/" }
   ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1.js"
-    },
-    {
-      "src": "/(.*\\.(js|css|svg|png|jpg|jpeg|gif|ico|json)$)",
-      "dest": "/client/dist/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/client/dist/index.html"
-    }
-  ]
+  "env": {
+    "NODE_ENV": "production"
+  }
 }

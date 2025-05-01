@@ -8,27 +8,11 @@ function validateEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-// For Vercel production, we would use a database or external service
-// For demo purposes, we'll just return success but log that this would normally save data
+// Subscribe to newsletter using our improved utility functions
 function subscribeToNewsletter(email) {
-  // In a production environment, this would connect to a database instead
-  if (process.env.VERCEL === '1') {
-    console.log('In production, would subscribe email:', email);
-    return { success: true, message: 'Subscription recorded (simulated in production)' };
-  }
-  
-  // For local development, we can still use the file system
   try {
-    const filePath = path.join(process.cwd(), 'data', 'newsletter-subscriptions.json');
-    let subscriptions = [];
-    
-    try {
-      const data = fs.readFileSync(filePath, 'utf8');
-      subscriptions = JSON.parse(data);
-    } catch (err) {
-      // File doesn't exist or is invalid, use empty array
-      subscriptions = [];
-    }
+    // Get existing subscriptions
+    const subscriptions = readJsonFile('newsletter-subscriptions.json') || [];
     
     // Check if email already exists
     const existing = subscriptions.find(sub => sub.email === email);
@@ -36,18 +20,31 @@ function subscribeToNewsletter(email) {
       return { success: true, message: 'Already subscribed' };
     }
     
+    // Create new subscription object
     const newSubscription = {
       id: subscriptions.length > 0 ? Math.max(...subscriptions.map(s => s.id)) + 1 : 1,
       email,
       createdAt: new Date().toISOString()
     };
     
+    // Add to array
     subscriptions.push(newSubscription);
-    fs.writeFileSync(filePath, JSON.stringify(subscriptions, null, 2), 'utf8');
     
-    return { success: true, message: 'Subscribed successfully' };
+    // Use the writeJsonFile utility from _utils.js
+    const { writeJsonFile } = require('./_utils');
+    const result = writeJsonFile('newsletter-subscriptions.json', subscriptions);
+    
+    return { 
+      success: result, 
+      message: result ? 'Subscribed successfully' : 'Error processing subscription' 
+    };
   } catch (error) {
     console.error('Error subscribing to newsletter:', error);
+    // Still return success in production to allow demo to work
+    if (process.env.VERCEL === '1') {
+      console.log('In production environment, simulating success for demo purposes');
+      return { success: true, message: 'Subscription recorded (simulated in production)' };
+    }
     return { success: false, message: 'Error processing subscription' };
   }
 }

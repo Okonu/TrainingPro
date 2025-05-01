@@ -1,23 +1,30 @@
 [
   {
     "id": 1,
-    "quote": "The leadership training program transformed our executive team. We're now more aligned, communicative, and effective in driving our organizational goals.",
-    "author": "Sarah Johnson",
-    "position": "CEO, TechVision Inc.",
-    "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    "quote": "The leadership training program transformed our executive team. We're now more aligned, communicative, and effective in driving our organizational goals across East Africa.",
+    "author": "Wangari Kamau",
+    "position": "CEO, TechHub Kenya",
+    "image": "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
   },
   {
     "id": 2,
-    "quote": "The workshops provided practical tools our managers could immediately apply. We've seen significant improvements in team performance and employee satisfaction.",
-    "author": "Michael Chen",
-    "position": "HR Director, Global Solutions",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    "quote": "The workshops provided practical tools our managers could immediately apply in our Nairobi office. We've seen significant improvements in team performance and employee satisfaction.",
+    "author": "David Ochieng",
+    "position": "HR Director, Savannah Innovations",
+    "image": "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
   },
   {
     "id": 3,
-    "quote": "Their tailored approach to our specific challenges made all the difference. The strategies implemented have helped us navigate a difficult transition period successfully.",
-    "author": "Lisa Rodriguez",
-    "position": "COO, Innovative Health",
-    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    "quote": "Their tailored approach to our specific challenges in the Kenyan market made all the difference. The strategies implemented have helped us navigate a difficult transition period successfully.",
+    "author": "Amina Mohamed",
+    "position": "COO, Afya Health Solutions",
+    "image": "https://images.unsplash.com/photo-1589156280159-27698a70f29e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+  },
+  {
+    "id": 4,
+    "quote": "Excellence Training's programs have equipped our leadership team with the skills needed to expand across East Africa. Their understanding of local business cultures has been invaluable.",
+    "author": "James Mwangi",
+    "position": "Managing Director, Serengeti Investments",
+    "image": "https://images.unsplash.com/photo-1539701938214-0d9736e1c16b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
   }
 ]

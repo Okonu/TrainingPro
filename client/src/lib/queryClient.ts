@@ -1,20 +1,7 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 
-// Map API endpoint paths to adapt to Vercel serverless functions
+// Keep API paths as-is since we've updated our Vercel configuration
 function mapApiPath(path: string): string {
-  // Remove /api prefix for Vercel serverless functions
-  if (path.startsWith('/api/')) {
-    // Map endpoints from /api/x to /x for Vercel
-    // For example: /api/testimonials -> /testimonials
-    const mappedPath = path.replace('/api/', '/');
-    
-    // Special case for newsletter subscriptions
-    if (mappedPath === '/newsletter/subscribe') {
-      return '/newsletter-subscribe';
-    }
-    
-    return mappedPath;
-  }
   return path;
 }
 

@@ -56,73 +56,73 @@ export default function ServicesSection() {
   const services = [
     {
       icon: <BarChart3 className="h-6 w-6" />,
-      title: "Corporate Strategy Development",
-      description: "Align your organization around a clear, compelling strategic vision that drives sustainable growth and competitive advantage.",
+      title: "East African Market Strategy",
+      description: "Align your organization around a clear, compelling strategic vision that drives sustainable growth in Kenyan and regional markets.",
       features: [
-        "Strategic Planning Workshops",
-        "Competitive Analysis",
-        "Vision & Mission Development",
-        "Strategic Implementation Roadmaps"
+        "Regional Strategic Planning",
+        "East African Competitive Analysis",
+        "Local Vision & Mission Development",
+        "Kenya-focused Implementation Plans"
       ],
       delay: "delay-100"
     },
     {
       icon: <Users className="h-6 w-6" />,
-      title: "Leadership Development",
-      description: "Build a pipeline of effective leaders who can navigate complexity, inspire teams, and drive organizational success.",
+      title: "African Leadership Development",
+      description: "Build a pipeline of effective Kenyan leaders who can navigate local complexity, inspire diverse teams, and drive organizational success.",
       features: [
-        "Executive Coaching",
+        "Executive Coaching for African Leaders",
         "High-Potential Leadership Programs",
-        "Change Management Training",
-        "Decision-Making Frameworks"
+        "Culturally-aware Change Management",
+        "Local Decision-Making Frameworks"
       ],
       delay: "delay-200"
     },
     {
       icon: <Lightbulb className="h-6 w-6" />,
-      title: "Innovation & Design Thinking",
-      description: "Foster a culture of innovation that enables your organization to adapt, evolve, and stay ahead of market disruptions.",
+      title: "African Innovation & Design",
+      description: "Foster a culture of innovation that addresses local challenges and enables your organization to adapt to East African market disruptions.",
       features: [
-        "Design Thinking Workshops",
-        "Innovation Process Development",
-        "Creativity Training",
-        "Prototyping & Testing Methods"
+        "Afrocentric Design Thinking",
+        "Local Innovation Process Development",
+        "Culturally-relevant Creativity Training",
+        "Kenya-focused Prototyping Methods"
       ],
       delay: "delay-300"
     },
     {
       icon: <Presentation className="h-6 w-6" />,
-      title: "Sales & Communication Excellence",
-      description: "Enhance your team's ability to communicate persuasively, build relationships, and close deals effectively.",
+      title: "Regional Sales Excellence",
+      description: "Enhance your team's ability to communicate persuasively, build relationships within local business contexts, and close deals effectively.",
       features: [
-        "Consultative Selling Techniques",
-        "Presentation Skills",
-        "Negotiation Mastery",
-        "Client Relationship Management"
+        "East African Consultative Selling",
+        "Cross-cultural Presentation Skills",
+        "Local Negotiation Techniques",
+        "Kenyan Client Relationship Management"
       ],
       delay: "delay-100"
     },
     {
       icon: <GraduationCap className="h-6 w-6" />,
-      title: "Professional Skills Training",
-      description: "Develop the essential competencies that professionals need to succeed in today's complex business environment.",
+      title: "Kenyan Professional Skills",
+      description: "Develop the essential competencies that professionals need to succeed in Kenya's dynamic business environment.",
       features: [
-        "Critical Thinking",
+        "Critical Thinking for Local Challenges",
         "Time & Priority Management",
-        "Emotional Intelligence",
-        "Effective Communication"
+        "Cross-cultural Emotional Intelligence",
+        "Effective Regional Communication"
       ],
       delay: "delay-200"
     },
     {
       icon: <Award className="h-6 w-6" />,
       title: "Team Performance Optimization",
-      description: "Transform groups of individuals into high-performing teams that collaborate effectively and deliver exceptional results.",
+      description: "Transform diverse Kenyan teams into high-performing units that collaborate effectively across cultures and deliver exceptional results.",
       features: [
-        "Team Building Programs",
-        "Conflict Resolution",
+        "Culturally-aware Team Building",
+        "Local Conflict Resolution",
         "Collaborative Problem Solving",
-        "Trust & Psychological Safety"
+        "Building Trust in Diverse Teams"
       ],
       delay: "delay-300"
     }
@@ -136,7 +136,7 @@ export default function ServicesSection() {
             Our Services
           </h2>
           <p className="text-neutral-600 text-lg">
-            Comprehensive training and development solutions to address your organization's most pressing challenges.
+            Comprehensive training and development solutions tailored to Kenyan and East African organizations facing unique regional challenges.
           </p>
         </div>
         

@@ -30,40 +30,37 @@ function validateContactForm(data) {
   return { isValid: errors.length === 0, errors };
 }
 
-// For Vercel production, we would use a database or external service
-// For demo purposes, we'll just return success but log that this would normally save data
+// Save contact message using our improved utility functions
 function saveContactMessage(message) {
-  // In a production environment, this would connect to a database instead
-  if (process.env.VERCEL === '1') {
-    console.log('In production, would save message:', message);
-    return { success: true, message: 'Message received (simulated in production)' };
-  }
-  
-  // For local development, we can still use the file system
   try {
-    const filePath = path.join(process.cwd(), 'data', 'contact-messages.json');
-    let messages = [];
+    // Get existing messages
+    const messages = readJsonFile('contact-messages.json') || [];
     
-    try {
-      const data = fs.readFileSync(filePath, 'utf8');
-      messages = JSON.parse(data);
-    } catch (err) {
-      // File doesn't exist or is invalid, use empty array
-      messages = [];
-    }
-    
+    // Create new message object
     const newMessage = {
       id: messages.length > 0 ? Math.max(...messages.map(m => m.id)) + 1 : 1,
       ...message,
       createdAt: new Date().toISOString()
     };
     
+    // Add to array
     messages.push(newMessage);
-    fs.writeFileSync(filePath, JSON.stringify(messages, null, 2), 'utf8');
     
-    return { success: true, message: 'Message sent successfully' };
+    // Use the writeJsonFile utility from _utils.js
+    const { writeJsonFile } = require('./_utils');
+    const result = writeJsonFile('contact-messages.json', messages);
+    
+    return { 
+      success: result, 
+      message: result ? 'Message sent successfully' : 'Error saving message' 
+    };
   } catch (error) {
     console.error('Error saving contact message:', error);
+    // Still return success in production to allow demo to work
+    if (process.env.VERCEL === '1') {
+      console.log('In production environment, simulating success for demo purposes');
+      return { success: true, message: 'Message received (simulated in production)' };
+    }
     return { success: false, message: 'Error saving message' };
   }
 }

@@ -127,15 +127,27 @@ export default function Header() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                <Button asChild>
-                  <Link 
-                    href="/login" 
-                    className="flex items-center gap-2"
-                  >
-                    <LogIn className="h-4 w-4" />
-                    <span>Sign In</span>
-                  </Link>
-                </Button>
+                <div className="flex items-center space-x-3">
+                  <Button variant="outline" asChild>
+                    <Link 
+                      href="/auth" 
+                      className="flex items-center gap-2"
+                    >
+                      <LogIn className="h-4 w-4" />
+                      <span>Sign In</span>
+                    </Link>
+                  </Button>
+                  
+                  <Button asChild>
+                    <Link 
+                      href="/auth?tab=register" 
+                      className="bg-primary hover:bg-primary-light text-white transition-colors flex items-center gap-2"
+                    >
+                      <User className="h-4 w-4" />
+                      <span>Sign Up</span>
+                    </Link>
+                  </Button>
+                </div>
               )
             )}
 
@@ -214,13 +226,22 @@ export default function Header() {
                   </button>
                 </>
               ) : (
-                <Link 
-                  href="/login" 
-                  className="block px-3 py-3 text-neutral-600 hover:text-primary font-medium"
-                  onClick={handleNavClick}
-                >
-                  Sign In
-                </Link>
+                <>
+                  <Link 
+                    href="/auth" 
+                    className="block px-3 py-3 text-neutral-600 hover:text-primary font-medium"
+                    onClick={handleNavClick}
+                  >
+                    Sign In
+                  </Link>
+                  <Link 
+                    href="/auth?tab=register" 
+                    className="block px-3 py-3 text-primary hover:text-primary-dark font-medium"
+                    onClick={handleNavClick}
+                  >
+                    Sign Up
+                  </Link>
+                </>
               )
             )}
 
