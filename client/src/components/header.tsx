@@ -11,11 +11,11 @@ import {
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
 import { Link } from "wouter";
-import { useAuthContext } from "@/context/AuthContext";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function Header() {
-  const { currentUser, loading, signOut } = useAuthContext();
+  const { user, isLoading, logoutMutation } = useAuth();
   const { toast } = useToast();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -43,7 +43,7 @@ export default function Header() {
 
   const handleLogout = async () => {
     try {
-      await signOut();
+      await logoutMutation.mutateAsync();
       toast({
         title: "Logged Out",
         description: "You have been successfully logged out.",
@@ -59,11 +59,12 @@ export default function Header() {
   };
 
   const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Programs", href: "#programs" },
-    { name: "Events", href: "#events" },
-    { name: "Testimonials", href: "#testimonials" },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/#about" },
+    { name: "Services", href: "/#services" },
+    { name: "Programs", href: "/programs" },
+    { name: "Events", href: "/#events" },
+    { name: "Testimonials", href: "/#testimonials" },
   ];
 
   return (
@@ -84,49 +85,54 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-neutral-600 hover:text-primary transition-colors font-medium"
-                onClick={handleNavClick}
-              >
-                {link.name}
-              </a>
-            ))}
+          <div className="hidden md:flex items-center justify-between flex-1 ml-10">
+            <nav className="flex items-center space-x-6">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-neutral-600 hover:text-primary transition-colors font-medium"
+                  onClick={handleNavClick}
+                >
+                  {link.name}
+                </a>
+              ))}
 
-            {!loading && (
-              currentUser ? (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-                      <Avatar className="h-10 w-10">
-                        <AvatarImage src={currentUser.photoURL || ''} alt={currentUser.displayName || 'User'} />
-                        <AvatarFallback>{currentUser.displayName?.charAt(0) || 'U'}</AvatarFallback>
-                      </Avatar>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem>
-                      <Link href="/profile" className="flex items-center">
-                        <User className="mr-2 h-4 w-4" />
-                        <span>My Profile</span>
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Link href="/bookings" className="flex items-center">
-                        <span>My Bookings</span>
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={handleLogout}>
-                      <LogOut className="mr-2 h-4 w-4" />
-                      <span>Log out</span>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              ) : (
+            {!isLoading && user && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage src="" alt={user.fullName || 'User'} />
+                      <AvatarFallback>{user.fullName?.charAt(0) || 'U'}</AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem>
+                    <Link href="/profile" className="flex items-center">
+                      <User className="mr-2 h-4 w-4" />
+                      <span>My Profile</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/bookings" className="flex items-center">
+                      <span>My Bookings</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleLogout}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
+
+            </nav>
+            
+            <div className="flex items-center space-x-4">
+              {!isLoading && !user && (
                 <div className="flex items-center space-x-3">
                   <Button variant="outline" asChild>
                     <Link 
@@ -148,19 +154,19 @@ export default function Header() {
                     </Link>
                   </Button>
                 </div>
-              )
-            )}
-
-            <Button asChild>
-              <a 
-                href="#contact" 
-                className="bg-primary hover:bg-primary-light text-white transition-colors"
-                onClick={handleNavClick}
-              >
-                Get Started
-              </a>
-            </Button>
-          </nav>
+              )}
+              
+              <Button asChild>
+                <a 
+                  href="#contact" 
+                  className="bg-primary hover:bg-primary-light text-white transition-colors"
+                  onClick={handleNavClick}
+                >
+                  Get Started
+                </a>
+              </Button>
+            </div>
+          </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -198,8 +204,8 @@ export default function Header() {
               </a>
             ))}
 
-            {!loading && (
-              currentUser ? (
+            {!isLoading && (
+              user ? (
                 <>
                   <Link 
                     href="/profile" 

@@ -1,65 +1,45 @@
-// Helper functions for Vercel API routes
-const fs = require('fs');
-const path = require('path');
+import { promises as fs } from 'fs';
+import path from 'path';
 
-// Utility to read JSON files - works in development and production
-function readJsonFile(fileName) {
+const dataPath = path.join(process.cwd(), 'data');
+
+// Read a JSON file from the data directory
+export async function readJsonFile(fileName) {
   try {
-    // Try multiple potential file paths to accommodate different environments
-    const possiblePaths = [
-      // Standard path (local development)
-      path.join(process.cwd(), 'data', fileName),
-      // Vercel typical paths for serverless functions
-      path.join(process.cwd(), '..', 'data', fileName),
-      path.join(process.cwd(), '/data', fileName),
-      // Additional fallback paths
-      path.join(__dirname, '..', 'data', fileName),
-      path.join(__dirname, '../..', 'data', fileName)
-    ];
-    
-    // Try each path until we find one that works
-    let data = null;
-    let successPath = null;
-    
-    for (const tryPath of possiblePaths) {
-      try {
-        if (fs.existsSync(tryPath)) {
-          data = fs.readFileSync(tryPath, 'utf8');
-          successPath = tryPath;
-          break;
-        }
-      } catch (e) {
-        // Continue to the next path
-      }
-    }
-    
-    if (!data) {
-      // If all paths failed, log clear error and return empty array
-      console.error(`Error: No valid data file found for ${fileName}. Tried paths:`, possiblePaths);
-      return [];
-    }
-    
-    console.log(`Successfully read ${fileName} from ${successPath}`);
+    const filePath = path.join(dataPath, `${fileName}.json`);
+    const data = await fs.readFile(filePath, 'utf8');
     return JSON.parse(data);
   } catch (error) {
-    console.error(`Error reading ${fileName}:`, error);
-    return [];
+    console.error(`Error reading ${fileName}.json:`, error);
+    throw new Error(`Failed to read ${fileName} data`);
   }
 }
 
-// Utility to write JSON files (if needed)
-function writeJsonFile(fileName, data) {
+// Write data to a JSON file in the data directory
+export async function writeJsonFile(fileName, data) {
   try {
-    const filePath = path.join(process.cwd(), 'data', fileName);
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
-    return true;
+    await fs.mkdir(dataPath, { recursive: true });
+    const filePath = path.join(dataPath, `${fileName}.json`);
+    await fs.writeFile(filePath, JSON.stringify(data, null, 2));
   } catch (error) {
-    console.error(`Error writing ${fileName}:`, error);
-    return false;
+    console.error(`Error writing to ${fileName}.json:`, error);
+    throw new Error(`Failed to write ${fileName} data`);
   }
 }
 
-module.exports = {
-  readJsonFile,
-  writeJsonFile
-};
+// Create JSON file if it doesn't exist
+export async function ensureJsonFile(fileName, defaultData = []) {
+  try {
+    const filePath = path.join(dataPath, `${fileName}.json`);
+    try {
+      await fs.access(filePath);
+    } catch (error) {
+      // File doesn't exist, create it
+      await fs.mkdir(dataPath, { recursive: true });
+      await fs.writeFile(filePath, JSON.stringify(defaultData));
+    }
+  } catch (error) {
+    console.error(`Error ensuring ${fileName}.json exists:`, error);
+    throw new Error(`Failed to ensure ${fileName} data file exists`);
+  }
+}
