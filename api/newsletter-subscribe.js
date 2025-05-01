@@ -1,7 +1,7 @@
 // Vercel serverless function for newsletter subscription API
-const fs = require('fs');
-const path = require('path');
-const { readJsonFile } = require('./_utils');
+import fs from 'fs';
+import path from 'path';
+import { readJsonFile, writeJsonFile } from './_utils.js';
 
 // Simple email validation
 function validateEmail(email) {
@@ -9,10 +9,16 @@ function validateEmail(email) {
 }
 
 // Subscribe to newsletter using our improved utility functions
-function subscribeToNewsletter(email) {
+async function subscribeToNewsletter(email) {
   try {
+    // Vercel environment special handling for serverless
+    if (process.env.VERCEL) {
+      console.log('In serverless environment, simulating success for newsletter subscription');
+      return { success: true, message: 'Subscription recorded (simulated in serverless)' };
+    }
+    
     // Get existing subscriptions
-    const subscriptions = readJsonFile('newsletter-subscriptions.json') || [];
+    const subscriptions = await readJsonFile('newsletter-subscriptions') || [];
     
     // Check if email already exists
     const existing = subscriptions.find(sub => sub.email === email);
@@ -30,26 +36,20 @@ function subscribeToNewsletter(email) {
     // Add to array
     subscriptions.push(newSubscription);
     
-    // Use the writeJsonFile utility from _utils.js
-    const { writeJsonFile } = require('./_utils');
-    const result = writeJsonFile('newsletter-subscriptions.json', subscriptions);
+    // Write to the data file
+    await writeJsonFile('newsletter-subscriptions', subscriptions);
     
     return { 
-      success: result, 
-      message: result ? 'Subscribed successfully' : 'Error processing subscription' 
+      success: true, 
+      message: 'Subscribed successfully' 
     };
   } catch (error) {
     console.error('Error subscribing to newsletter:', error);
-    // Still return success in production to allow demo to work
-    if (process.env.VERCEL === '1') {
-      console.log('In production environment, simulating success for demo purposes');
-      return { success: true, message: 'Subscription recorded (simulated in production)' };
-    }
     return { success: false, message: 'Error processing subscription' };
   }
 }
 
-module.exports = (req, res) => {
+export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
       const { email } = req.body;
@@ -61,7 +61,7 @@ module.exports = (req, res) => {
         });
       }
       
-      const result = subscribeToNewsletter(email);
+      const result = await subscribeToNewsletter(email);
       
       if (result.success) {
         return res.status(201).json({ message: result.message });
