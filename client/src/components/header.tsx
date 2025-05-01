@@ -1,9 +1,22 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User, LogIn, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuSeparator, 
+  DropdownMenuTrigger 
+} from "@/components/ui/dropdown-menu";
+import { Link } from "wouter";
+import { useAuthContext } from "@/context/AuthContext";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Header() {
+  const { currentUser, loading, signOut } = useAuthContext();
+  const { toast } = useToast();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -25,6 +38,23 @@ export default function Header() {
   const handleNavClick = () => {
     if (isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      toast({
+        title: "Logged Out",
+        description: "You have been successfully logged out.",
+      });
+    } catch (error) {
+      console.error("Error logging out:", error);
+      toast({
+        title: "Error",
+        description: "There was an error logging out. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -65,6 +95,50 @@ export default function Header() {
                 {link.name}
               </a>
             ))}
+
+            {!loading && (
+              currentUser ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+                      <Avatar className="h-10 w-10">
+                        <AvatarImage src={currentUser.photoURL || ''} alt={currentUser.displayName || 'User'} />
+                        <AvatarFallback>{currentUser.displayName?.charAt(0) || 'U'}</AvatarFallback>
+                      </Avatar>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem>
+                      <Link href="/profile" className="flex items-center">
+                        <User className="mr-2 h-4 w-4" />
+                        <span>My Profile</span>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <Link href="/bookings" className="flex items-center">
+                        <span>My Bookings</span>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={handleLogout}>
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Log out</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Button asChild>
+                  <Link 
+                    href="/login" 
+                    className="flex items-center gap-2"
+                  >
+                    <LogIn className="h-4 w-4" />
+                    <span>Sign In</span>
+                  </Link>
+                </Button>
+              )
+            )}
+
             <Button asChild>
               <a 
                 href="#contact" 
@@ -97,7 +171,7 @@ export default function Header() {
         <div
           className={cn(
             "md:hidden transition-all duration-300 ease-in-out overflow-hidden",
-            isMobileMenuOpen ? "max-h-64" : "max-h-0"
+            isMobileMenuOpen ? "max-h-96" : "max-h-0"
           )}
         >
           <div className="px-2 pt-2 pb-4 space-y-1 bg-white">
@@ -111,6 +185,45 @@ export default function Header() {
                 {link.name}
               </a>
             ))}
+
+            {!loading && (
+              currentUser ? (
+                <>
+                  <Link 
+                    href="/profile" 
+                    className="block px-3 py-3 text-neutral-600 hover:text-primary font-medium"
+                    onClick={handleNavClick}
+                  >
+                    My Profile
+                  </Link>
+                  <Link 
+                    href="/bookings" 
+                    className="block px-3 py-3 text-neutral-600 hover:text-primary font-medium"
+                    onClick={handleNavClick}
+                  >
+                    My Bookings
+                  </Link>
+                  <button
+                    className="block w-full text-left px-3 py-3 text-neutral-600 hover:text-primary font-medium"
+                    onClick={() => {
+                      handleLogout();
+                      handleNavClick();
+                    }}
+                  >
+                    Log Out
+                  </button>
+                </>
+              ) : (
+                <Link 
+                  href="/login" 
+                  className="block px-3 py-3 text-neutral-600 hover:text-primary font-medium"
+                  onClick={handleNavClick}
+                >
+                  Sign In
+                </Link>
+              )
+            )}
+
             <a
               href="#contact"
               className="block px-3 py-3 text-primary font-medium"
