@@ -1,5 +1,23 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 
+// Map API endpoint paths to adapt to Vercel serverless functions
+function mapApiPath(path: string): string {
+  // Remove /api prefix for Vercel serverless functions
+  if (path.startsWith('/api/')) {
+    // Map endpoints from /api/x to /x for Vercel
+    // For example: /api/testimonials -> /testimonials
+    const mappedPath = path.replace('/api/', '/');
+    
+    // Special case for newsletter subscriptions
+    if (mappedPath === '/newsletter/subscribe') {
+      return '/newsletter-subscribe';
+    }
+    
+    return mappedPath;
+  }
+  return path;
+}
+
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
     const text = (await res.text()) || res.statusText;
@@ -12,7 +30,10 @@ export async function apiRequest(
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
-  const res = await fetch(url, {
+  // Map the API path for Vercel compatbility
+  const mappedUrl = mapApiPath(url);
+  
+  const res = await fetch(mappedUrl, {
     method,
     headers: data ? { "Content-Type": "application/json" } : {},
     body: data ? JSON.stringify(data) : undefined,
@@ -29,7 +50,10 @@ export const getQueryFn: <T>(options: {
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
-    const res = await fetch(queryKey[0] as string, {
+    // Map the API path for Vercel compatibility
+    const url = typeof queryKey[0] === 'string' ? mapApiPath(queryKey[0] as string) : queryKey[0];
+    
+    const res = await fetch(url as string, {
       credentials: "include",
     });
 
