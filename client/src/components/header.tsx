@@ -59,11 +59,12 @@ export default function Header() {
   };
 
   const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Programs", href: "#programs" },
-    { name: "Events", href: "#events" },
-    { name: "Testimonials", href: "#testimonials" },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/#about" },
+    { name: "Services", href: "/#services" },
+    { name: "Programs", href: "/programs" },
+    { name: "Events", href: "/#events" },
+    { name: "Testimonials", href: "/#testimonials" },
   ];
 
   return (

@@ -7,6 +7,8 @@ import Home from "@/pages/home";
 import AuthPage from "@/pages/auth-page";
 import ProfilePage from "@/pages/profile";
 import BookingsPage from "@/pages/bookings";
+import ProgramsPage from "@/pages/programs";
+import ProgramPage from "@/pages/program";
 import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "@/lib/protected-route";
 
@@ -15,6 +17,8 @@ function Router() {
     <Switch>
       {/* Main pages */}
       <Route path="/" component={Home} />
+      <Route path="/programs" component={ProgramsPage} />
+      <Route path="/program/:id" component={ProgramPage} />
       
       {/* Auth pages */}
       <Route path="/auth" component={AuthPage} />

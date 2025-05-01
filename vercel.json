@@ -21,6 +21,8 @@
     { "source": "/api/logout", "destination": "/api/logout.js" },
     { "source": "/api/profile", "destination": "/api/profile.js" },
     { "source": "/api/profile/(.*)", "destination": "/api/profile.js" },
+    { "source": "/api/bookings", "destination": "/api/bookings.js" },
+    { "source": "/api/bookings/(.*)", "destination": "/api/bookings.js" },
     { "source": "/(login|profile|bookings|auth)(.*)", "destination": "/" },
     { "source": "/(.*)", "destination": "/" }
   ],
