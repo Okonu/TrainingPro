@@ -18,6 +18,7 @@ export default defineConfig({
       '@context': resolve(__dirname, './src/context'),
       '@lib': resolve(__dirname, './src/lib'),
       '@shared': resolve(__dirname, '../shared'),
+      '@types': resolve(__dirname, './src/types'),
     },
   },
   build: {
