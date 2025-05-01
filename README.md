@@ -12,6 +12,10 @@ A stylish, professional website for a training and development company featuring
 - 📅 Upcoming events section with registration options
 - 🌟 Testimonials showcase with client feedback
 - 🔍 Comprehensive About Us and Services sections
+- 🔐 User authentication with Google Sign-in
+- 👤 User profile management
+- 🛒 Program booking system with secure payment processing (in development)
+- 📊 User dashboard for managing bookings and account information
 
 ## Tech Stack
 
@@ -20,7 +24,9 @@ A stylish, professional website for a training and development company featuring
 - **State Management:** React Query for API data fetching
 - **Routing:** Wouter for lightweight client-side routing
 - **Backend:** Express.js API endpoints
-- **Data Storage:** JSON files (MVP approach for simplicity)
+- **Data Storage:** JSON files (MVP approach) with Firebase Firestore integration
+- **Authentication:** Firebase Authentication with Google Sign-in
+- **Payment Processing:** Stripe integration for secure payments
 
 ## Getting Started
 
@@ -86,29 +92,52 @@ This project is designed for easy deployment to Vercel with minimal configuratio
 
 ### Environment Variables
 
-No environment variables are required for the MVP version since data is stored in JSON files.
+The following environment variables are required for full functionality:
+
+#### Firebase Configuration
+- `VITE_FIREBASE_API_KEY` - Firebase API key
+- `VITE_FIREBASE_PROJECT_ID` - Firebase project ID
+- `VITE_FIREBASE_APP_ID` - Firebase application ID
+
+#### Stripe Configuration (For Payment Processing)
+- `VITE_STRIPE_PUBLIC_KEY` - Stripe publishable key
+- `STRIPE_SECRET_KEY` - Stripe secret key (server-side only)
+
+For local development, the JSON file data storage will work without these environment variables, but authentication and payment features will be disabled.
 
 ## Project Structure
 
 ```
-├── client/               # Frontend React application
+├── client/                 # Frontend React application
 │   ├── src/
-│   │   ├── components/   # UI components
-│   │   ├── hooks/        # Custom React hooks
-│   │   ├── lib/          # Utility functions
-│   │   ├── pages/        # Page components
-│   │   ├── App.tsx       # Main application component
-│   │   └── main.tsx      # Application entry point
-├── data/                 # JSON data files
-│   ├── events.json       # Events data
-│   ├── programs.json     # Programs data
-│   ├── testimonials.json # Testimonials data
-├── db/                   # Database configuration (placeholder for MVP)
-├── server/               # Express server
-│   ├── routes.ts         # API route definitions
-│   └── storage.ts        # Data access layer
-└── shared/               # Shared code between client and server
-    └── schema.ts         # TypeScript interface definitions
+│   │   ├── components/     # UI components
+│   │   │   ├── auth/       # Authentication-related components
+│   │   │   │   ├── Login.tsx        # Login component
+│   │   │   │   └── UserProfile.tsx  # User profile management
+│   │   │   └── ...         # Other UI components
+│   │   ├── context/        # React context providers
+│   │   │   └── AuthContext.tsx # Authentication context
+│   │   ├── hooks/          # Custom React hooks
+│   │   ├── lib/            # Utility functions
+│   │   │   ├── firebase.ts # Firebase configuration and helpers
+│   │   │   └── ...         # Other utility functions
+│   │   ├── pages/          # Page components
+│   │   │   ├── login.tsx   # Login page
+│   │   │   ├── profile.tsx # User profile page
+│   │   │   ├── bookings.tsx # Bookings management page
+│   │   │   └── ...         # Other page components
+│   │   ├── App.tsx         # Main application component
+│   │   └── main.tsx        # Application entry point
+├── data/                   # JSON data files
+│   ├── events.json         # Events data
+│   ├── programs.json       # Programs data
+│   ├── testimonials.json   # Testimonials data
+├── db/                     # Database configuration (placeholder for MVP)
+├── server/                 # Express server
+│   ├── routes.ts           # API route definitions
+│   └── storage.ts          # Data access layer
+└── shared/                 # Shared code between client and server
+    └── schema.ts           # TypeScript interface definitions
 ```
 
 ## Development Guidelines
@@ -126,12 +155,15 @@ No environment variables are required for the MVP version since data is stored i
 
 ## Future Enhancements
 
-- User authentication for admin panel
-- Database integration for data persistence
-- Content management system for easy updates
-- Analytics dashboard for visitor tracking
+- Admin panel for content management
+- Complete integration of Firebase Firestore for all data
+- Analytics dashboard for visitor and booking tracking
+- Notification system for booking updates and event reminders
 - Blog section for content marketing
 - Online course delivery platform
+- Advanced search and filtering for programs and events
+- Integration with calendar apps for event scheduling
+- Membership subscription system with tiered benefits
 
 ## License
 
