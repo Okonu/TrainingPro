@@ -11,9 +11,18 @@ import { z } from "zod";
 import connectPg from "connect-pg-simple";
 import { pool } from "../db";
 
+// Extend Express User interface
 declare global {
   namespace Express {
-    interface User extends typeof users.$inferSelect {}
+    interface User {
+      id: number;
+      username: string;
+      password: string;
+      email: string;
+      fullName: string;
+      createdAt: Date;
+      updatedAt: Date;
+    }
   }
 }
 
@@ -57,7 +66,7 @@ export function setupAuth(app: Express) {
   app.use(passport.session());
 
   passport.use(
-    new LocalStrategy(async (username, password, done) => {
+    new LocalStrategy(async (username: string, password: string, done: (error: any, user?: any, options?: any) => void) => {
       try {
         const [user] = await db.select().from(users).where(eq(users.username, username)).limit(1);
         
@@ -123,14 +132,14 @@ export function setupAuth(app: Express) {
   });
 
   app.post("/api/login", (req, res, next) => {
-    passport.authenticate("local", (err, user, info) => {
+    passport.authenticate("local", (err: any, user: Express.User | false, info: any) => {
       if (err) return next(err);
       if (!user) return res.status(401).json({ error: "Invalid username or password" });
       
-      req.login(user, (err) => {
+      req.login(user, (err: Error) => {
         if (err) return next(err);
         // Don't include password in response
-        const { password, ...userWithoutPassword } = user;
+        const { password, ...userWithoutPassword } = user as Express.User;
         res.status(200).json(userWithoutPassword);
       });
     })(req, res, next);

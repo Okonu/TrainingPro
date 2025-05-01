@@ -6,6 +6,9 @@ import { contactFormSchema, subscribeSchema } from "@shared/schema";
 import { setupAuth } from "./auth";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Setup authentication
+  setupAuth(app);
+  
   // API routes prefix
   const apiPrefix = "/api";
 
