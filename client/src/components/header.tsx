@@ -11,11 +11,11 @@ import {
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
 import { Link } from "wouter";
-import { useAuthContext } from "@/context/AuthContext";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function Header() {
-  const { currentUser, loading, signOut } = useAuthContext();
+  const { user, isLoading, logoutMutation } = useAuth();
   const { toast } = useToast();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
