@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title": "Strategic Leadership Summit",
+    "description": "Join industry leaders for a day of learning, networking, and inspiration focused on strategic leadership in a changing business landscape.",
+    "date": "2025-06-15T09:00:00Z",
+    "location": "Grand Hotel Conference Center, New York",
+    "isVirtual": false
+  },
+  {
+    "id": 2,
+    "title": "Innovation Masterclass",
+    "description": "A hands-on workshop designed to help organizations foster a culture of innovation and develop practical approaches to creative problem-solving.",
+    "date": "2025-07-22T13:00:00Z",
+    "location": "Tech Innovation Hub, San Francisco",
+    "isVirtual": false
+  },
+  {
+    "id": 3,
+    "title": "Remote Team Management Webinar",
+    "description": "Learn effective strategies for leading distributed teams, building virtual culture, and maintaining productivity in remote work environments.",
+    "date": "2025-05-08T15:00:00Z",
+    "location": "Zoom Webinar",
+    "isVirtual": true
+  },
+  {
+    "id": 4,
+    "title": "Executive Communication Bootcamp",
+    "description": "An intensive two-day program for executives looking to enhance their communication impact, presentation skills, and stakeholder engagement.",
+    "date": "2025-08-10T09:30:00Z",
+    "location": "Business Excellence Center, Chicago",
+    "isVirtual": false
+  }
+]

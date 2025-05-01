@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "author": "Sarah Johnson",
+    "position": "Chief HR Officer",
+    "company": "Global Innovations Inc.",
+    "content": "ExcellenceTraining transformed our leadership team's effectiveness. The tailored programs addressed our specific challenges and provided practical tools our managers use daily. We've seen measurable improvements in team collaboration and decision-making.",
+    "rating": 5,
+    "imageUrl": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+  },
+  {
+    "id": 2,
+    "author": "David Chen",
+    "position": "Director of Operations",
+    "company": "TechSolutions Ltd.",
+    "content": "The operational excellence program exceeded our expectations. The facilitators' industry knowledge was impressive, and the custom workshops directly addressed our efficiency challenges. Our productivity metrics have improved by 28% since implementation.",
+    "rating": 5,
+    "imageUrl": "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+  },
+  {
+    "id": 3,
+    "author": "Emily Rodriguez",
+    "position": "VP of Sales",
+    "company": "Meridian Services",
+    "content": "The sales excellence program was a game-changer for our team. The training provided practical techniques that our representatives implemented immediately. The ongoing coaching support ensured sustained performance improvement.",
+    "rating": 4,
+    "imageUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80"
+  },
+  {
+    "id": 4,
+    "author": "Michael Thompson",
+    "position": "CEO",
+    "company": "Innovate Financial Group",
+    "content": "Working with ExcellenceTraining has been instrumental to our company's growth. Their executive coaching program helped me develop strategic clarity during a critical expansion phase. I continue to apply their frameworks in my leadership approach.",
+    "rating": 5,
+    "imageUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+  }
+]
