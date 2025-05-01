@@ -35,8 +35,16 @@
       "dest": "/api/newsletter-subscribe.js"
     },
     {
+      "src": "/favicon.svg",
+      "dest": "/client/dist/favicon.svg"
+    },
+    {
       "src": "/(.*\\.(js|css|svg|png|jpg|jpeg|gif|ico|json)$)",
       "dest": "/client/dist/$1"
+    },
+    {
+      "src": "/(login|profile|bookings)",
+      "dest": "/client/dist/index.html"
     },
     {
       "src": "/(.*)",
@@ -47,5 +55,8 @@
     "api/*.js": {
       "includeFiles": "data/**"
     }
+  },
+  "env": {
+    "NODE_ENV": "production"
   }
 }
