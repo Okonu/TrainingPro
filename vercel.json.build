@@ -20,7 +20,7 @@
     },
     {
       "src": "/api/programs",
-      "dest": "/api/programs.js"
+      "dest": "/api/programs.js" 
     },
     {
       "src": "/api/events",
