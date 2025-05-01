@@ -30,18 +30,18 @@ export default function LeadershipSection() {
   const features = [
     {
       icon: <Brain className="h-6 w-6" />,
-      title: "Evidence-Based Approach",
-      description: "Programs built on proven leadership principles and cutting-edge research"
+      title: "Culturally-Relevant Approach",
+      description: "Programs built on proven leadership principles tailored to East African business contexts"
     },
     {
       icon: <UserCog className="h-6 w-6" />,
       title: "Personalized Development",
-      description: "Customized plans addressing each leader's unique strengths and opportunities"
+      description: "Customized plans addressing each Kenyan leader's unique strengths and opportunities"
     },
     {
       icon: <RotateCcw className="h-6 w-6" />,
-      title: "Continuous Evolution",
-      description: "Ongoing coaching and resources ensuring sustained leadership growth"
+      title: "Continuous Growth",
+      description: "Ongoing coaching and resources ensuring sustained leadership development for the local market"
     }
   ];
 
@@ -82,8 +82,8 @@ export default function LeadershipSection() {
           <div className={`order-1 lg:order-2 animated-element ${isInView ? 'in-view' : ''}`}>
             <div className="relative">
               <img 
-                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" 
-                alt="Leadership development workshop" 
+                src="https://images.unsplash.com/photo-1576089073624-b5451dfcd8b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" 
+                alt="Kenyan leadership development workshop" 
                 className="rounded-lg shadow-lg w-full h-auto"
                 height="600"
                 width="800"
@@ -91,11 +91,11 @@ export default function LeadershipSection() {
               <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg max-w-xs">
                 <div className="text-sm text-neutral-600">
                   <span className="text-secondary mr-2">"</span>
-                  Our leadership program completely transformed how I approach team management and strategic decisions.
+                  This leadership program completely transformed how I approach team management and strategic decisions for our Nairobi operations.
                   <span className="text-secondary ml-2">"</span>
                 </div>
                 <div className="mt-2 font-medium text-primary">
-                  - Sarah Johnson, COO at TechInnovate
+                  - Grace Kimani, COO at Savannah Tech
                 </div>
               </div>
             </div>
