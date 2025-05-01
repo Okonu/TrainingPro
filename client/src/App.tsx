@@ -9,6 +9,7 @@ import ProfilePage from "@/pages/profile";
 import BookingsPage from "@/pages/bookings";
 import ProgramsPage from "@/pages/programs";
 import ProgramPage from "@/pages/program";
+import DashboardPage from "@/pages/dashboard";
 import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "@/lib/protected-route";
 
@@ -22,6 +23,7 @@ function Router() {
       
       {/* Auth pages */}
       <Route path="/auth" component={AuthPage} />
+      <ProtectedRoute path="/dashboard" component={DashboardPage} />
       <ProtectedRoute path="/profile" component={ProfilePage} />
       <ProtectedRoute path="/bookings" component={BookingsPage} />
       

@@ -6,6 +6,7 @@ import { User } from "../types/schema";
 import { Redirect } from "wouter";
 import { Loader2 } from "lucide-react";
 import { formatDate } from "@/lib/utils";
+import DashboardLayout from "@/components/dashboard/layout";
 import {
   Card,
   CardContent,
@@ -99,80 +100,87 @@ export default function BookingsPage() {
   const hasBookings = bookings && bookings.length > 0;
 
   return (
-    <div className="container mx-auto py-12 px-4">
-      <h1 className="text-3xl font-bold mb-8">My Bookings</h1>
+    <DashboardLayout>
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold">My Bookings</h1>
+          <p className="text-muted-foreground">
+            View and manage your program registrations
+          </p>
+        </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Program Registrations</CardTitle>
-          <CardDescription>
-            View all your upcoming and past program registrations
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {bookingsLoading ? (
-            <div className="flex justify-center py-8">
-              <Loader2 className="h-8 w-8 animate-spin text-primary" />
-            </div>
-          ) : !hasBookings ? (
-            <div className="text-center py-12">
-              <h3 className="text-lg font-medium mb-2">No Bookings Yet</h3>
-              <p className="text-muted-foreground mb-6">
-                You haven't registered for any programs or events yet.
-              </p>
-              <Button>Browse Programs</Button>
-            </div>
-          ) : (
-            <Tabs
-              value={activeTab}
-              onValueChange={setActiveTab}
-              className="w-full"
-            >
-              <TabsList className="grid w-full grid-cols-2 mb-6">
-                <TabsTrigger value="upcoming">
-                  Upcoming ({upcomingBookings.length})
-                </TabsTrigger>
-                <TabsTrigger value="past">
-                  Past ({pastBookings.length})
-                </TabsTrigger>
-              </TabsList>
+        <Card>
+          <CardHeader>
+            <CardTitle>Program Registrations</CardTitle>
+            <CardDescription>
+              View all your upcoming and past program registrations
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            {bookingsLoading ? (
+              <div className="flex justify-center py-8">
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+              </div>
+            ) : !hasBookings ? (
+              <div className="text-center py-12">
+                <h3 className="text-lg font-medium mb-2">No Bookings Yet</h3>
+                <p className="text-muted-foreground mb-6">
+                  You haven't registered for any programs or events yet.
+                </p>
+                <Button>Browse Programs</Button>
+              </div>
+            ) : (
+              <Tabs
+                value={activeTab}
+                onValueChange={setActiveTab}
+                className="w-full"
+              >
+                <TabsList className="grid w-full grid-cols-2 mb-6">
+                  <TabsTrigger value="upcoming">
+                    Upcoming ({upcomingBookings.length})
+                  </TabsTrigger>
+                  <TabsTrigger value="past">
+                    Past ({pastBookings.length})
+                  </TabsTrigger>
+                </TabsList>
 
-              <TabsContent value="upcoming">
-                {upcomingBookings.length === 0 ? (
-                  <div className="text-center py-8">
-                    <p className="text-muted-foreground">
-                      You don't have any upcoming bookings.
-                    </p>
-                  </div>
-                ) : (
-                  <div className="space-y-6">
-                    {upcomingBookings.map((booking) => (
-                      <BookingCard key={booking.id} booking={booking} />
-                    ))}
-                  </div>
-                )}
-              </TabsContent>
+                <TabsContent value="upcoming">
+                  {upcomingBookings.length === 0 ? (
+                    <div className="text-center py-8">
+                      <p className="text-muted-foreground">
+                        You don't have any upcoming bookings.
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="space-y-6">
+                      {upcomingBookings.map((booking) => (
+                        <BookingCard key={booking.id} booking={booking} />
+                      ))}
+                    </div>
+                  )}
+                </TabsContent>
 
-              <TabsContent value="past">
-                {pastBookings.length === 0 ? (
-                  <div className="text-center py-8">
-                    <p className="text-muted-foreground">
-                      You don't have any past bookings.
-                    </p>
-                  </div>
-                ) : (
-                  <div className="space-y-6">
-                    {pastBookings.map((booking) => (
-                      <BookingCard key={booking.id} booking={booking} />
-                    ))}
-                  </div>
-                )}
-              </TabsContent>
-            </Tabs>
-          )}
-        </CardContent>
-      </Card>
-    </div>
+                <TabsContent value="past">
+                  {pastBookings.length === 0 ? (
+                    <div className="text-center py-8">
+                      <p className="text-muted-foreground">
+                        You don't have any past bookings.
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="space-y-6">
+                      {pastBookings.map((booking) => (
+                        <BookingCard key={booking.id} booking={booking} />
+                      ))}
+                    </div>
+                  )}
+                </TabsContent>
+              </Tabs>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    </DashboardLayout>
   );
 }
 

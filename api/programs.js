@@ -1,5 +1,5 @@
 // Vercel serverless function for programs API
-import { readJsonFile, ensureJsonFile } from './_utils';
+import { readJsonFile, ensureJsonFile } from './_utils.js';
 
 export default async function handler(req, res) {
   // Ensure programs file exists

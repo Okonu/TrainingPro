@@ -1,10 +1,10 @@
 // Vercel serverless function for events API
-const { readJsonFile } = require('./_utils');
+import { readJsonFile } from './_utils.js';
 
-module.exports = (req, res) => {
+export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
-      const events = readJsonFile('events.json');
+      const events = await readJsonFile('events');
       return res.status(200).json(
         events.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
       );

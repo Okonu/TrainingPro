@@ -1,0 +1,44 @@
+May 01 18:58:20.98
+POST
+500
+training-pro-red.vercel.app
+/api/register
+Error in registration: Error: EROFS: read-only file system, open '/var/task/data/users.json' at async open (node:internal/fs/promises:638:25) at async Object.writeFile (node:internal/fs/promises:1212:14) at async Object.handler (file:///var/task/api/register.js:97:5) at async r (/opt/rust/nodejs.js:2:14674) at async Server.<anonymous> (/opt/rust/nodejs.js:2:11417) at async Server.<anonymous> (/opt/rust/nodejs.js:16:6262) { errno: -30, code: 'EROFS', syscall: 'open', path: '/var/task/data/users.json' }
+May 01 18:57:59.67
+GET
+401
+training-pro-red.vercel.app
+/api/user
+May 01 18:57:59.67
+GET
+500
+training-pro-red.vercel.app
+/api/events
+ReferenceError: require is not defined in ES module scope, you can use import instead This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/events.js:2:26 at ModuleJob.run (node:internal/modules/esm/module_job:271:25) at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:578:26) at async d (/opt/rust/nodejs.js:16:18911) Node.js process exited with exit status: 1. The logs above can help with debugging the issue. ReferenceError: require is not defined in ES module scope, you can use import instead This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/events.js:2:26 at ModuleJob.run (node:internal/modules/esm/module_job:271:25) at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:578:26) at async d (/opt/rust/nodejs.js:16:18911) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+May 01 18:43:17.23
+GET
+500
+training-dzkqj44r9-okonus-projects.vercel.app
+/api/events
+ReferenceError: require is not defined in ES module scope, you can use import instead This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/events.js:2:26 at ModuleJob.run (node:internal/modules/esm/module_job:271:25) at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:578:26) at async d (/opt/rust/nodejs.js:16:18911) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+May 01 18:43:17.23
+GET
+401
+training-dzkqj44r9-okonus-projects.vercel.app
+/api/user
+May 01 18:43:17.18
+GET
+401
+training-dzkqj44r9-okonus-projects.vercel.app
+/api/user
+May 01 18:43:17.18
+GET
+500
+training-dzkqj44r9-okonus-projects.vercel.app
+/api/events
+ReferenceError: require is not defined in ES module scope, you can use import instead This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/events.js:2:26 at ModuleJob.run (node:internal/modules/esm/module_job:271:25) at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:578:26) at async d (/opt/rust/nodejs.js:16:18911) Node.js process exited with exit status: 1. The logs above can help with debugging the issue. ReferenceError: require is not defined in ES module scope, you can use import instead This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/events.js:2:26 at ModuleJob.run (node:internal/modules/esm/module_job:271:25) at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:578:26) at async d (/opt/rust/nodejs.js:16:18911) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+May 01 18:32:14.62
+GET
+500
+training-q04j0sla7-okonus-projects.vercel.app
+/api/events

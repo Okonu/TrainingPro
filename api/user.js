@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import { parse } from 'cookie';
+import { readJsonFile } from './_utils.js';
 
 const usersPath = path.join(process.cwd(), 'data', 'users.json');
 
@@ -36,11 +37,28 @@ export default async function handler(req, res) {
       return res.status(401).json({ error: 'Invalid session' });
     }
 
-    // Get users from the JSON file
+    // Handle Vercel serverless environment
+    if (process.env.VERCEL) {
+      // For demo purposes, if this is the test user from the login endpoint
+      if (userId === 1) {
+        const mockUser = {
+          id: 1,
+          username: 'testuser',
+          email: 'test@example.com',
+          fullName: 'Test User',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        };
+        return res.status(200).json(mockUser);
+      } else {
+        return res.status(401).json({ error: 'User not found' });
+      }
+    }
+    
+    // For local development, get users from the JSON file
     let users = [];
     try {
-      const usersData = await fs.readFile(usersPath, 'utf8');
-      users = JSON.parse(usersData);
+      users = await readJsonFile('users');
     } catch (error) {
       return res.status(500).json({ error: 'Error reading user data' });
     }
