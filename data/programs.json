@@ -1,35 +1,41 @@
 [
   {
     "id": 1,
-    "title": "Leadership Excellence",
-    "description": "Develop effective leaders capable of inspiring teams, driving innovation, and executing strategic initiatives.",
+    "title": "Executive Leadership Program",
+    "description": "A comprehensive program designed for senior executives to enhance strategic thinking, decision-making, and organizational leadership skills.",
     "features": [
-      "Executive Leadership Training",
-      "Change Management",
-      "Strategic Decision Making"
+      "Strategic vision development",
+      "Executive presence and communication",
+      "Change management",
+      "Crisis leadership",
+      "Building high-performance teams"
     ],
-    "imageUrl": "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
   },
   {
     "id": 2,
-    "title": "Team Performance",
-    "description": "Build high-performing teams that collaborate effectively, communicate clearly, and deliver exceptional results.",
+    "title": "Emerging Leaders Development",
+    "description": "Prepare your high-potential employees for leadership roles through skill development, mentorship, and practical leadership experiences.",
     "features": [
-      "Team Building Workshops",
-      "Conflict Resolution",
-      "Agile Team Management"
+      "Leadership fundamentals",
+      "Emotional intelligence",
+      "Project management",
+      "Effective communication",
+      "Problem-solving and decision-making"
     ],
-    "imageUrl": "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+    "image": "https://images.unsplash.com/photo-1507208773393-40d9fc670ffa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
   },
   {
     "id": 3,
-    "title": "Professional Skills",
-    "description": "Enhance critical professional competencies essential for success in today's rapidly evolving business landscape.",
+    "title": "Team Leadership Essentials",
+    "description": "A focused program for team leaders and managers to develop the critical skills needed to lead effective, engaged, and productive teams.",
     "features": [
-      "Advanced Communication",
-      "Negotiation & Influence",
-      "Problem Solving & Innovation"
+      "Team dynamics and motivation",
+      "Delegation and empowerment",
+      "Conflict resolution",
+      "Performance management",
+      "Coaching and feedback"
     ],
-    "imageUrl": "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+    "image": "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
   }
 ]
