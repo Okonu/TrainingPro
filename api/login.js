@@ -3,6 +3,7 @@ import path from 'path';
 import { scrypt, timingSafeEqual } from 'crypto';
 import { promisify } from 'util';
 import { serialize } from 'cookie';
+import { readJsonFile } from './_utils.js';
 
 const scryptAsync = promisify(scrypt);
 const usersPath = path.join(process.cwd(), 'data', 'users.json');
@@ -30,11 +31,47 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Username and password are required' });
     }
 
-    // Get users from the JSON file
+    // Check if we're in Vercel serverless environment
+    if (process.env.VERCEL) {
+      // For demo purposes in Vercel, allow login with a test account
+      if (username === 'testuser' && password === 'password123') {
+        // Create a mock user
+        const mockUser = {
+          id: 1,
+          username: 'testuser',
+          email: 'test@example.com',
+          fullName: 'Test User',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        };
+        
+        // Set session cookie
+        const session = {
+          userId: mockUser.id,
+          expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) // 1 week
+        };
+        
+        const sessionCookie = serialize('session', JSON.stringify(session), {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'strict',
+          maxAge: 7 * 24 * 60 * 60, // 1 week in seconds
+          path: '/'
+        });
+        
+        res.setHeader('Set-Cookie', sessionCookie);
+        
+        // Return the mock user
+        return res.status(200).json(mockUser);
+      } else {
+        return res.status(401).json({ error: 'Invalid username or password' });
+      }
+    }
+    
+    // For local development, get users from the JSON file
     let users = [];
     try {
-      const usersData = await fs.readFile(usersPath, 'utf8');
-      users = JSON.parse(usersData);
+      users = await readJsonFile('users');
     } catch (error) {
       return res.status(500).json({ error: 'Error reading user data' });
     }

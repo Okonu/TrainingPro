@@ -1,10 +1,10 @@
 // Vercel serverless function for testimonials API
-const { readJsonFile } = require('./_utils');
+import { readJsonFile } from './_utils.js';
 
-module.exports = (req, res) => {
+export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
-      const testimonials = readJsonFile('testimonials.json');
+      const testimonials = await readJsonFile('testimonials');
       return res.status(200).json(testimonials.sort((a, b) => b.id - a.id));
     } catch (error) {
       console.error("Error fetching testimonials:", error);
