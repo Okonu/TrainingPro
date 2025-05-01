@@ -81,19 +81,19 @@ export default function ContactSection() {
       icon: <MapPin className="h-5 w-5" />,
       title: "Our Headquarters",
       content: <>
-        123 Training Avenue, Suite 500<br/>
-        New York, NY 10001
+        Kenyatta Avenue, GPO Building, 3rd Floor<br/>
+        P.O. Box 34567, Nairobi, Kenya
       </>
     },
     {
       icon: <Phone className="h-5 w-5" />,
       title: "Phone",
-      content: "(555) 123-4567"
+      content: "+254 722 123 456"
     },
     {
       icon: <Mail className="h-5 w-5" />,
       title: "Email",
-      content: "info@excellencetraining.com"
+      content: "info@excellencetraining.co.ke"
     }
   ];
 
