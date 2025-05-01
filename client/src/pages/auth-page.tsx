@@ -27,6 +27,16 @@ export default function AuthPage() {
   const { user, loginMutation, registerMutation } = useAuth();
   const { toast } = useToast();
 
+  // Check for tab query parameter
+  useEffect(() => {
+    // Get the tab from URL query parameters
+    const params = new URLSearchParams(window.location.search);
+    const tabParam = params.get('tab');
+    if (tabParam === 'register') {
+      setActiveTab('register');
+    }
+  }, []);
+
   // Redirect if already logged in
   useEffect(() => {
     if (user) {
